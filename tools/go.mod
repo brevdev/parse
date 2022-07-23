@@ -1,5 +1,4 @@
-module github.com/golang-templates/seed/build
-
+module github.com/brevdev/parse
 go 1.18
 
 require (
