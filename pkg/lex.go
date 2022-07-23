@@ -1,6 +1,5 @@
 package parse
 
-
 import (
 	"fmt"
 	"strings"
@@ -122,7 +121,7 @@ const (
 
 func lexText(l *lexer) stateFn {
 	i := 0
-	for i < 1000 { //scan 1000 chars max to prevent infinite loops
+	for i < 1000 { // scan 1000 chars max to prevent infinite loops
 		if strings.HasPrefix(l.input[l.pos:], http) {
 			return lexHttp
 		}
@@ -134,11 +133,9 @@ func lexText(l *lexer) stateFn {
 		}
 		if l.peek() == semicolon {
 			return lexHost
-
 		}
 		if l.peek() == forwardslash {
 			return lexHost
-
 		}
 		if l.next() == eof {
 			break
@@ -172,7 +169,6 @@ func lexRepo(l *lexer) stateFn {
 		}
 		l.next()
 	}
-
 }
 
 func lexOrg(l *lexer) stateFn {
@@ -187,25 +183,22 @@ func lexOrg(l *lexer) stateFn {
 
 		}
 		if l.next() == eof {
-
 			return l.errorf("unexpected eof")
 		}
 	}
-
 }
 
 func lexHost(l *lexer) stateFn {
 	l.emit(itemHost)
 	l.next()
 	return lexOrg
-
 }
+
 func lexHttp(l *lexer) stateFn {
 	l.pos += len(http)
 	l.emit(itemHttp)
 	l.next()
 	return lexText
-
 }
 
 func lexHttps(l *lexer) stateFn {
@@ -213,7 +206,6 @@ func lexHttps(l *lexer) stateFn {
 	l.emit(itemHttps)
 	l.next()
 	return lexText
-
 }
 
 func lexGitUsername(l *lexer) stateFn {

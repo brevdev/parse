@@ -1,3 +1,3 @@
-module github.com/brevdev/parse
+module parse
 
-go 1.16
+go 1.18
