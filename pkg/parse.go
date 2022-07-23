@@ -1,4 +1,4 @@
-package parse
+package main
 
 import "fmt"
 
@@ -6,6 +6,7 @@ func GetHTTPURLFromOrigin(origin string) string {
 	tokens := extractTokensFromOrigin(origin)
 	return fmt.Sprintf("http://%s/%s/%s", tokens.Host, tokens.Org, tokens.Repo)
 }
+
 func GetHTTPSURLFromOrigin(origin string) string {
 	tokens := extractTokensFromOrigin(origin)
 	return fmt.Sprintf("https://%s/%s/%s", tokens.Host, tokens.Org, tokens.Repo)
@@ -38,7 +39,6 @@ func TransformRawGitToClean(url string) string {
 	}
 
 	return gitUsername + fmt.Sprintf("%s:%s/%s.git", items[0], items[1], items[2])
-
 }
 
 type Tokens struct {
