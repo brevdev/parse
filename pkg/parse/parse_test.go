@@ -223,3 +223,30 @@ func TestGetSSHURLFromOrigin(t *testing.T) {
 		})
 	}
 }
+
+func TestGetRepoNameFromOrigin(t *testing.T) {
+	type args struct {
+		origin string
+	}
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		// TODO: Add test cases.
+		{
+			name: "ssh url w/o git username",
+			args: args{
+				origin: "github.com:ali-wetrill/hello-react.git",
+			},
+			want: "hello-react",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := GetRepoNameFromOrigin(tt.args.origin); got != tt.want {
+				t.Errorf("GetRepoNameFromOrigin() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

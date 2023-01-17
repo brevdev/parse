@@ -17,6 +17,11 @@ func GetSSHURLFromOrigin(origin string) string {
 	return fmt.Sprintf("%s%s:%s/%s.git", tokens.GitUserName, tokens.Host, tokens.Org, tokens.Repo)
 }
 
+func GetRepoNameFromOrigin(origin string) string {
+	tokens := extractTokensFromOrigin(origin)
+	return tokens.Repo
+}
+
 func TransformRawGitToClean(url string) string {
 	scanning := true
 	items := []string{}
