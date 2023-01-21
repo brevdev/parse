@@ -22,6 +22,12 @@ func GetRepoNameFromOrigin(origin string) string {
 	return tokens.Repo
 }
 
+func CMP(x, y string) bool {
+	t := extractTokensFromOrigin(x)
+	t2 := extractTokensFromOrigin(y)
+	return t.Host == t2.Host && t.Org == t2.Org && t.Repo == t2.Repo
+}
+
 func TransformRawGitToClean(url string) string {
 	scanning := true
 	items := []string{}
